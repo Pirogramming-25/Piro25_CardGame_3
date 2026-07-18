@@ -459,3 +459,128 @@ requirements.txt
 * 테스트를 완료함
 * 불필요한 코드가 제거됨
 * PR 리뷰가 완료됨
+
+
+역할 1. 공통 설정 및 회원·메인 담당
+담당 기능
+프로젝트 초기 설정 관리
+로그인 및 로그아웃
+사용자 모델 관리
+소셜 로그인
+메인 페이지
+공통 레이아웃
+랭킹 페이지
+전체 기능 연결 및 통합 확인
+담당 파일
+config/
+accounts/
+core/
+core/templates/base.html
+core/templates/main.html
+core/templates/ranking.html
+static/css/reset.css
+static/css/base.css
+static/css/components.css
+static/css/main.css
+static/css/ranking.css
+templates/socialaccount/login.html
+주요 작업
+settings.py 앱 및 환경변수 설정
+프로젝트 공통 URL 연결
+로그인·로그아웃 기능 구현
+소셜 로그인 연결
+전체 페이지에서 사용할 base.html 작성
+공통 헤더 및 네비게이션 구현
+메인 페이지에서 진행 중인 게임과 주요 메뉴 표시
+사용자별 랭킹 조회
+공통 버튼·카드·입력창 디자인 기준 관리
+
+공통 파일을 수정할 때는 다른 팀원에게 변경 내용을 공유합니다.
+
+역할 2. 게임 생성·상세·전적 담당
+담당 기능
+게임 관련 Model 설계
+게임 생성 및 참가
+게임 상세 조회
+게임 진행 상태 관리
+사용자 전적 조회
+게임 기록 저장
+담당 파일
+games/models.py
+games/forms.py
+games/templates/games/detail.html
+games/templates/games/history.html
+static/css/detail.css
+static/css/history.css
+games/tests/test_history.py
+주요 작업
+게임, 카드, 게임 참여자 관련 Model 구현
+게임 생성 및 상대방 지정
+게임 대기·진행·종료 상태 관리
+현재 공격자와 방어자 정보 관리
+게임 상세 페이지 구현
+사용한 카드와 남은 카드 표시
+전체 게임 진행 기록 표시
+사용자별 승리·패배 및 게임 전적 조회
+공격·반격 담당자가 사용할 Model 메서드 제공
+
+Model 구조를 수정할 때는 공격·반격 담당자와 먼저 협의합니다.
+
+역할 3. 공격 기능 담당
+담당 기능
+공격 카드 선택
+공격 가능 여부 검증
+공격 처리
+공격 결과 저장
+상대 검색 및 공격 대상 선택
+공격 페이지 구현
+담당 파일
+games/services/attack.py
+games/templates/games/attack.html
+static/css/attack.css
+static/js/attack.js
+games/tests/test_attack.py
+주요 작업
+공격할 상대 검색
+공격 대상 선택
+사용 가능한 공격 카드 조회
+공격 카드 선택 UI 구현
+자신의 턴인지 확인
+이미 사용한 카드인지 확인
+종료된 게임인지 확인
+공격 정보 저장
+공격 이후 상대방 반격 단계로 상태 변경
+잘못된 공격 요청 처리
+공격 성공 및 실패 테스트 작성
+
+공격 처리 로직은 views.py에 길게 작성하지 않고 games/services/attack.py에 작성합니다.
+
+역할 4. 반격·결과 처리 담당
+담당 기능
+반격 카드 선택
+반격 가능 여부 검증
+공격 카드와 반격 카드 비교
+게임 승패 판정
+점수 및 결과 저장
+결과 페이지 구현
+담당 파일
+games/services/result.py
+games/templates/games/counter.html
+games/templates/games/result.html
+static/css/counter.css
+static/css/result.css
+static/js/counter.js
+games/tests/test_counter.py
+주요 작업
+현재 사용 가능한 반격 카드 조회
+반격 카드 선택 UI 구현
+공격 카드와 반격 카드의 우위 비교
+반격 성공 및 실패 판정
+점수 계산
+다음 턴 결정
+게임 종료 조건 확인
+최종 승자와 패자 저장
+게임 결과 페이지 구현
+반격 및 결과 판정 테스트 작성
+
+게임 결과 계산은 games/services/result.py에서 관리하며, 공격 담당자와 카드 승패 규칙을 동일하게 맞춥니다.
