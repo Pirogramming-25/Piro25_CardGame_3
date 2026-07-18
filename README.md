@@ -9,8 +9,8 @@
 기능별로 새로운 브랜치를 생성한 뒤 작업합니다.
 
 ```bash
-git checkout main
-git pull origin main
+git checkout develop
+git pull origin develop
 git checkout -b 브랜치명
 ```
 
@@ -40,18 +40,18 @@ style/ranking-page
 
 ### 2. 작업 시작 전 확인
 
-작업을 시작하기 전에 반드시 최신 `main` 브랜치를 받아옵니다.
+작업을 시작하기 전에 반드시 최신 `develop` 브랜치를 받아옵니다.
 
 ```bash
-git checkout main
-git pull origin main
+git checkout develop
+git pull origin develop
 ```
 
 이미 생성한 작업 브랜치에 최신 변경사항을 반영하려면 다음 명령어를 사용합니다.
 
 ```bash
 git checkout 작업브랜치
-git merge main
+git merge develop
 ```
 
 충돌이 발생한 경우 임의로 코드를 삭제하지 않고, 해당 파일을 작업한 팀원과 확인한 뒤 해결합니다.
@@ -125,7 +125,7 @@ PR을 생성하기 전에 다음 사항을 확인합니다.
 * `.env` 파일이 포함되지 않았는지 확인
 * 테스트 코드가 통과하는지 확인
 
-최소 한 명 이상의 리뷰를 받은 뒤 `main` 브랜치에 병합합니다.
+최소 한 명 이상의 리뷰를 받은 뒤 `develop` 브랜치에 병합합니다.
 
 ---
 
