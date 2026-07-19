@@ -1,0 +1,53 @@
+/* ============================================
+   인증 페이지 (login.html, signup.html)
+   ============================================ */
+
+.auth-card {
+  max-width: 400px;
+  margin: 60px auto;
+}
+
+.auth-card__title {
+  margin-bottom: 20px;
+}
+
+.auth-card__footer {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.auth-form button[type="submit"] {
+  margin-top: 8px;
+}
+
+/* "또는" 구분선 */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.auth-divider__line {
+  flex: 1;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+/* 카카오 로그인 버튼 */
+.kakao-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  background: #FEE500;
+  color: #000000D9;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.kakao-btn:hover {
+  filter: brightness(0.97);
+}

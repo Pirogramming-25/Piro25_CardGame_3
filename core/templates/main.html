@@ -5,17 +5,17 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  <section class="hero card" style="padding:32px;">
-    <h1 style="margin-bottom:8px;">어서와, {{ user.display_name }}!</h1>
+  <section class="hero hero--authed card">
+    <h1 class="hero__title">어서와, {{ user.display_name }}!</h1>
     <p class="muted">현재 점수 <strong>{{ user.score }}</strong>점</p>
 
     {% if pending_attacks %}
-      <p style="margin-top:12px;padding:10px;background:#fef3c7;border-radius:6px;">
+      <p class="hero__alert">
         받은 공격이 <strong>{{ pending_attacks }}건</strong> 있어요.
       </p>
     {% endif %}
 
-    <div style="display:flex;gap:12px;margin-top:24px;">
+    <div class="hero__actions">
       {# Role 3의 attack URL 만들어지면 열기 #}
       {# <a href="{% url 'games:attack' %}" class="btn btn-primary">게임 시작</a> #}
       {# <a href="{% url 'games:history' %}" class="btn btn-ghost">전적 보기</a> #}
@@ -23,10 +23,10 @@
     </div>
   </section>
 {% else %}
-  <section class="hero card" style="padding:32px;text-align:center;">
-    <h1 style="margin-bottom:12px;">피로그래머 카드 게임</h1>
-    <p class="muted" style="margin-bottom:24px;">1~10 숫자 카드로 다른 피로그래머와 대결하세요.</p>
-    <div style="display:flex;gap:12px;justify-content:center;">
+  <section class="hero hero--guest card">
+    <h1 class="hero__title">피로그래머 카드 게임</h1>
+    <p class="muted hero__lead">1~10 숫자 카드로 다른 피로그래머와 대결하세요.</p>
+    <div class="hero__actions hero__actions--center">
       <a href="{% url 'accounts:login' %}" class="btn btn-primary">로그인</a>
       <a href="{% url 'accounts:signup' %}" class="btn btn-ghost">회원가입</a>
     </div>

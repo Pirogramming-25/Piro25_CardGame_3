@@ -1,0 +1,83 @@
+/* ============================================
+   랭킹 페이지 (ranking.html)
+   ============================================ */
+
+.ranking__title {
+  margin-bottom: 24px;
+}
+
+/* Top 3 podium */
+.podium {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.podium-item {
+  text-align: center;
+  padding: 20px;
+}
+
+.podium-item__medal {
+  font-size: 36px;
+}
+
+.podium-item__name {
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.podium-item__score {
+  margin-top: 4px;
+}
+
+/* 1위 강조 */
+.podium-item.rank-1 {
+  transform: scale(1.05);
+  border: 2px solid #f5c518;
+}
+
+/* 본인 강조 (podium) */
+.podium-item.me {
+  background: #eef2ff;
+}
+
+/* Ranking table */
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.ranking-table thead tr {
+  background: #f9fafb;
+}
+
+.ranking-table th,
+.ranking-table td {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.ranking-table__col-score {
+  text-align: right;
+}
+
+.ranking-table tbody td {
+  border-top: 1px solid #f1f5f9;
+}
+
+/* 본인 강조 (table row) */
+.ranking-table__row.me {
+  background: #eef2ff;
+  font-weight: 700;
+}
+
+.ranking-table__empty {
+  padding: 24px;
+  text-align: center;
+}
