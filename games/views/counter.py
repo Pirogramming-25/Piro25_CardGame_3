@@ -1,14 +1,20 @@
+import random
+
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect, render
 
+from games.models import Game
 from games.services.result import process_counter
 
 
 @login_required
 def counter_attack(request, game_id):
-    from games.models import Game  # 순환 참조 방지
-
     game = get_object_or_404(Game, pk=game_id)
+
+    if not game.can_counter(request.user):
+        raise PermissionDenied("반격할 수 없는 게임입니다.")
+
     cards = _get_counter_cards(request, game_id)
 
     if request.method == "POST":
@@ -53,12 +59,6 @@ def counter_attack(request, game_id):
 
 
 def _get_counter_cards(request, game_id):
-    """
-    반격 카드 5장을 세션에 저장해서 새로고침해도 유지되게 함.
-    게임마다 별도 키로 저장 (game_id로 구분).
-    """
-    import random
-
     session_key = f"counter_cards_{game_id}"
 
     if session_key not in request.session:
@@ -68,6 +68,5 @@ def _get_counter_cards(request, game_id):
 
 
 def _clear_counter_cards(request, game_id):
-    """반격 완료 후 세션에서 카드 목록 제거 (다음 게임에 영향 없도록)"""
     session_key = f"counter_cards_{game_id}"
     request.session.pop(session_key, None)

@@ -22,5 +22,5 @@ urlpatterns = [
     path("", include("core.urls")),
     path("accounts/", include("accounts.urls")),
     path("accounts/", include("allauth.urls")),
-    # path("games/", include("games.urls")),  # Role 2 준비되면 열기
+    path("games/", include("games.urls")), 
 ]

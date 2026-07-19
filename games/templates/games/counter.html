@@ -35,7 +35,11 @@
             {% endfor %}
         </ul>
 
+        {% if error %}
+        <p class="counter-form__error">{{ error }}</p>
+        {% else %}
         <p class="counter-form__error" data-error hidden>카드를 선택해주세요.</p>
+        {% endif %}
 
         <button type="submit" class="counter-form__submit" disabled>CounterAttack</button>
     </form>

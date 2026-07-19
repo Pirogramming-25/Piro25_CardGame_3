@@ -14,7 +14,10 @@ if (counterForm) {
             input.closest(".counter-card__label").classList.add("counter-card--selected");
 
             submitButton.disabled = false;
-            errorMessage.hidden = true;
+
+            if (errorMessage) {
+                errorMessage.hidden = true;
+            }
         });
     });
 
@@ -23,7 +26,9 @@ if (counterForm) {
 
         if (!selected) {
             event.preventDefault();
-            errorMessage.hidden = false;
+            if (errorMessage) {
+                errorMessage.hidden = false;
+            }
         }
     });
 }
