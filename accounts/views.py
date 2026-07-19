@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.contrib.auth import login
+from django.shortcuts import redirect, render
 
-# Create your views here.
+
+def signup(request):
+    # Step 9에서 완성
+    return render(request, "accounts/signup.html")
