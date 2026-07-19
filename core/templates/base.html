@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Piro Card Game{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components.css' %}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header__inner">
+            <a href="{% url 'core:main' %}" class="header__logo">
+            Piro Card Game
+            </a>
+
+            <nav class="header__nav">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'games:attack' %}">게임하기</a>
+                    <a href="{% url 'games:history' %}">게임 전적</a>
+                    <a href="{% url 'core:ranking' %}">랭킹</a>
+
+                    <form method="post" action="{% url 'account_logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">로그아웃</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'account_login' %}">로그인</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    {% if messages %}
+        <div class="container">
+            {% for message in messages %}
+                <p class="message message--{{ message.tags }}">
+                    {{ message }}
+                </p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
