@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}반격하기{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/counter.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="counter">
+    <h1 class="counter__title">반격하기</h1>
+
+    <p class="counter__opponent">
+        {{ attacker.display_name }}님이 <strong>{{ attacker_card }}</strong> 카드로 공격했습니다.
+    </p>
+
+    <form class="counter-form" method="post" action="{% url 'games:counter' game_id %}">
+        {% csrf_token %}
+
+        <p class="counter-form__label">반격할 카드:</p>
+        <ul class="counter-card-list">
+            {% for card in cards %}
+            <li class="counter-card">
+                <label class="counter-card__label">
+                    <input
+                        type="radio"
+                        name="defender_card"
+                        value="{{ card }}"
+                        class="counter-card__input"
+                    >
+                    <span class="counter-card__value">{{ card }}</span>
+                </label>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <p class="counter-form__error" data-error hidden>카드를 선택해주세요.</p>
+
+        <button type="submit" class="counter-form__submit" disabled>CounterAttack</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/counter.js' %}"></script>
+{% endblock %}
