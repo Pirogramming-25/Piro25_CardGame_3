@@ -25,7 +25,7 @@ INSTALLED_APPS = [
 
     "accounts",
     "core",
-    # "games",  # Role 2가 게임 앱 준비 끝나면 그때 활성화
+    "games"
 ]
 
 SITE_ID = 1
