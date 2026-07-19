@@ -37,7 +37,6 @@ def counter_attack(request, game_id):
                 {
                     "game_id": game_id,
                     "attacker": game.attacker,
-                    "attacker_card": game.attacker_card,
                     "cards": cards,
                     "error": "카드를 다시 선택해주세요.",
                 },
@@ -52,7 +51,6 @@ def counter_attack(request, game_id):
         {
             "game_id": game_id,
             "attacker": game.attacker,
-            "attacker_card": game.attacker_card,
             "cards": cards,
         },
     )
