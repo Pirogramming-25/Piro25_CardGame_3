@@ -1,58 +1,53 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>{% block title %}Piro Card Game{% endblock %}</title>
-
-    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/components.css' %}">
-
-    {% block extra_css %}{% endblock %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}피로그래머 카드 게임{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;700&display=swap">
+  <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components.css' %}">
+  {% block extra_css %}{% endblock %}
 </head>
-
 <body>
-    <header class="header">
-        <div class="container header__inner">
-            <a href="{% url 'core:main' %}" class="header__logo">
-            Piro Card Game
-            </a>
+  <nav class="navbar">
+    <a href="{% url 'core:main' %}" class="logo">Pirogramming Card Game</a>
+    <div class="nav-links">
+      {% if user.is_authenticated %}
+        <a href="{% url 'core:ranking' %}">랭킹</a>
+        <a href="{% url 'games:history' %}">전적</a>
+        <span class="nav-user">
+          {{ user.display_name }} · {{ user.score }}점
+        </span>
+        <form action="{% url 'accounts:logout' %}" method="post" class="inline-form">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-ghost">로그아웃</button>
+        </form>
+      {% else %}
+        <a href="{% url 'accounts:login' %}" class="btn btn-ghost">로그인</a>
+        <a href="{% url 'accounts:signup' %}" class="btn btn-primary">회원가입</a>
+      {% endif %}
+    </div>
+  </nav>
 
-            <nav class="header__nav">
-                {% if user.is_authenticated %}
-                    <a href="{% url 'games:attack' %}">게임하기</a>
-                    <a href="{% url 'games:history' %}">게임 전적</a>
-                    <a href="{% url 'core:ranking' %}">랭킹</a>
+  {% if messages %}
+    <ul class="messages">
+      {% for m in messages %}<li class="msg {{ m.tags }}">{{ m }}</li>{% endfor %}
+    </ul>
+  {% endif %}
 
-                    <form method="post" action="{% url 'account_logout' %}">
-                        {% csrf_token %}
-                        <button type="submit">로그아웃</button>
-                    </form>
-                {% else %}
-                    <a href="{% url 'account_login' %}">로그인</a>
-                {% endif %}
-            </nav>
-        </div>
-    </header>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
 
-    {% if messages %}
-        <div class="container">
-            {% for message in messages %}
-                <p class="message message--{{ message.tags }}">
-                    {{ message }}
-                </p>
-            {% endfor %}
-        </div>
-    {% endif %}
+  <footer class="footer">
+    <span class="footer__team">피로그래밍 25기 3조</span>
+  </footer>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-
-    {% block extra_js %}{% endblock %}
+  {% block extra_js %}{% endblock %}
 </body>
 </html>

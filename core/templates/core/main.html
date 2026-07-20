@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}메인 - 피로그래머 카드 게임{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/main.css' %}">{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <section class="hero hero--authed card">
+    <h1 class="hero__title">어서와, {{ user.display_name }}!</h1>
+    <p class="muted">현재 점수 <strong>{{ user.score }}</strong>점</p>
+
+    {% if pending_attacks %}
+      <p class="hero__alert">
+        받은 공격이 <strong>{{ pending_attacks }}건</strong> 있어요.
+      </p>
+    {% endif %}
+
+    <div class="hero__actions">
+      <a href="{% url 'games:attack' %}" class="btn btn-primary">게임 시작</a>
+      <a href="{% url 'games:history' %}" class="btn btn-ghost">전적 보기</a>
+      <a href="{% url 'core:ranking' %}" class="btn btn-ghost">랭킹 보기</a>
+    </div>
+  </section>
+{% else %}
+  <section class="hero hero--guest card">
+    <h1 class="hero__title">피로그래머 카드 게임</h1>
+    <p class="muted hero__lead">1~10 숫자 카드로 다른 피로그래머와 대결하세요.</p>
+    <div class="hero__actions hero__actions--center">
+      <a href="{% url 'accounts:login' %}" class="btn btn-primary">로그인</a>
+      <a href="{% url 'accounts:signup' %}" class="btn btn-ghost">회원가입</a>
+    </div>
+  </section>
+{% endif %}
+{% endblock %}
