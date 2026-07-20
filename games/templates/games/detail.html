@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}게임 정보{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/detail.css' %}">{% endblock %}
+{% block content %}
+<div class="detail bg-scene">
+    <div class="detail-card">
+        <h1 class="detail-card__title">
+            {{ game.id }} – {{ game.attacker }} VS {{ game.defender }}
+        </h1>
+
+        {% if game.status == "pending" %}
+            {% if can_counter %}
+                <p class="detail-card__status">반격 대기중</p>
+                <p class="detail-card__mycard">{{ game.attacker }}님이 카드를 냈습니다. 반격해보세요!</p>
+                <div class="detail-card__actions">
+                    <a href="{% url 'games:counter' game.id %}" class="btn">대응하기</a>
+                    <a href="{% url 'games:history' %}" class="btn btn--ghost">전적목록</a>
+                </div>
+            {% elif can_cancel %}
+                <p class="detail-card__status">진행중..</p>
+                <p class="detail-card__mycard">나: {{ game.attacker_card }}</p>
+                <div class="detail-card__actions">
+                    <a href="{% url 'games:cancel' game.id %}" class="btn btn--ghost">게임취소</a>
+                    <a href="{% url 'games:history' %}" class="btn btn--ghost">전적목록</a>
+                </div>
+            {% else %}
+                <p class="detail-card__status">반격 대기중</p>
+                <div class="detail-card__actions">
+                    <a href="{% url 'games:history' %}" class="btn btn--ghost">전적목록</a>
+                </div>
+            {% endif %}
+
+        {% elif game.status == "cancelled" %}
+            <p class="detail-card__status">취소된 게임입니다.</p>
+            <div class="detail-card__actions">
+                <a href="{% url 'games:history' %}" class="btn btn--ghost">전적목록</a>
+            </div>
+
+        {% else %}
+            <p class="detail-card__rule">
+                {% if game.winning_rule == "low" %}숫자가 작은 사람이 이깁니다.{% else %}숫자가 큰 사람이 이깁니다.{% endif %}
+            </p>
+            <p class="detail-card__row">{{ game.attacker }} : {{ game.attacker_card }}</p>
+            <p class="detail-card__row">{{ game.defender }} : {{ defender_card }}</p>
+            <p class="detail-card__result">
+                결과:
+                {% if is_draw %}무승부
+                {% else %}{% if game.winner == request.user %}승리{% else %}패배{% endif %}{% endif %}
+            </p>
+            <p class="detail-card__score">
+                {% if not is_draw %}
+                    {% if game.attacker == request.user %}점수: {{ game.attacker_score_change }}
+                    {% else %}점수: {{ game.defender_score_change }}{% endif %}
+                {% endif %}
+            </p>
+            <div class="detail-card__actions">
+                <a href="{% url 'games:history' %}" class="btn btn--ghost">전적목록</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
