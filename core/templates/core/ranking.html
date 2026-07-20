@@ -4,6 +4,7 @@
 {% block extra_css %}<link rel="stylesheet" href="{% static 'css/ranking.css' %}">{% endblock %}
 
 {% block content %}
+<div class="main-hero" {% if request %}style="background-image: url({% static 'images/main.png' %});"{% endif %}></div>
 <h1 class="ranking__title">랭킹</h1>
 
 {% if top3 %}
