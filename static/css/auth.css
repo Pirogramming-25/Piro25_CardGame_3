@@ -2,36 +2,104 @@
    인증 페이지 (login.html, signup.html)
    ============================================ */
 
+/* 카드 전체 컨테이너 */
 .auth-card {
-  max-width: 400px;
+  max-width: 420px;
   margin: 60px auto;
+  padding: 40px 32px;
+  background-color: #ffffff;
+  border-radius: var(--radius, 12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
+/* 카드 제목 */
 .auth-card__title {
-  margin-bottom: 20px;
-}
-
-.auth-card__footer {
-  margin-top: 16px;
+  margin-bottom: 28px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #111827; /* 더 명확하고 진한 텍스트 */
   text-align: center;
 }
 
+/* Django Form ({{ form.as_p }}) 레이아웃 & 입력창 스타일 */
+.auth-form p {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 필드 라벨 (아이디, 비밀번호 등) */
+.auth-form label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+/* 입력 박스 통일 (아이디, 비밀번호 등 모든 input) */
+.auth-form input[type="text"],
+.auth-form input[type="password"],
+.auth-form input[type="email"] {
+  width: 100%;
+  height: 48px; /* 높이 통일 */
+  padding: 0 14px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #1f2937;
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-sizing: border-box; /* 패딩 포함 크기 일정하게 고정 */
+  transition: all 0.2s ease;
+}
+
+/* 입력창 포커스 스타일 */
+.auth-form input[type="text"]:focus,
+.auth-form input[type="password"]:focus,
+.auth-form input[type="email"]:focus {
+  outline: none;
+  background-color: #ffffff;
+  border-color: #07222c; /* 메인 테마 색상 */
+  box-shadow: 0 0 0 3px rgba(7, 34, 44, 0.1);
+}
+
+/* 에러 메세지 및 도움말 스타일 (있을 경우) */
+.auth-form .helptext, 
+.auth-form .errorlist {
+  font-size: 13px;
+  margin-top: 4px;
+  color: #ef4444;
+}
+
+/* 기본 제출 버튼 (로그인 / 가입하기) */
 .auth-form button[type="submit"] {
-  margin-top: 8px;
+  width: 100%;
+  height: 48px;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 /* "또는" 구분선 */
 .auth-divider {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin: 20px 0;
+  gap: 12px;
+  margin: 24px 0;
 }
 
 .auth-divider__line {
   flex: 1;
   border: none;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #e5e7eb;
+}
+
+.auth-divider .muted {
+  font-size: 13px;
+  font-weight: 500;
+  color: #9ca3af;
 }
 
 /* 카카오 로그인 버튼 */
@@ -40,14 +108,37 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px;
+  width: 100%;
+  height: 48px;
   background: #FEE500;
-  color: #000000D9;
-  border-radius: 6px;
-  font-weight: 600;
+  color: #191919;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
   text-decoration: none;
+  box-sizing: border-box;
+  transition: background-color 0.2s;
 }
 
 .kakao-btn:hover {
-  filter: brightness(0.97);
+  background-color: #fada0a;
+}
+
+/* 하단 풋터 링크 안내 (계정이 없으신가요?) */
+.auth-card__footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.auth-card__footer a {
+  color: #07222c;
+  font-weight: 700;
+  text-decoration: underline;
+  margin-left: 4px;
+}
+
+.auth-card__footer a:hover {
+  color: #0f3a4a;
 }
