@@ -4,31 +4,32 @@
 {% block extra_css %}<link rel="stylesheet" href="{% static 'css/main.css' %}">{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-  <section class="hero hero--authed card">
-    <h1 class="hero__title">어서와, {{ user.display_name }}!</h1>
-    <p class="muted">현재 점수 <strong>{{ user.score }}</strong>점</p>
-
-    {% if pending_attacks %}
-      <p class="hero__alert">
-        받은 공격이 <strong>{{ pending_attacks }}건</strong> 있어요.
+<div class="main-hero" {% if request %}style="background-image: url({% static 'images/main.png' %});"{% endif %}>
+  {% if user.is_authenticated %}
+    <div class="main-hero__inner">
+      <h1 class="main-hero__title">Piro Game</h1>
+      <p class="main-hero__welcome">
+        {{ user.display_name }} 님이 로그인 중입니다.
       </p>
-    {% endif %}
-
-    <div class="hero__actions">
-      <a href="{% url 'games:attack' %}" class="btn btn-primary">게임 시작</a>
-      <a href="{% url 'games:history' %}" class="btn btn-ghost">전적 보기</a>
-      <a href="{% url 'core:ranking' %}" class="btn btn-ghost">랭킹 보기</a>
+      <p class="main-hero__score">
+        현재 점수 <strong>{{ user.score }}</strong>점
+        {% if pending_attacks %}
+          · 받은 공격 <strong>{{ pending_attacks }}건</strong>
+        {% endif %}
+      </p>
+      <div class="main-hero__actions">
+        <a href="{% url 'games:attack' %}" class="pill-btn">start</a>
+        <a href="{% url 'games:history' %}" class="pill-btn">list</a>
+      </div>
     </div>
-  </section>
-{% else %}
-  <section class="hero hero--guest card">
-    <h1 class="hero__title">피로그래머 카드 게임</h1>
-    <p class="muted hero__lead">1~10 숫자 카드로 다른 피로그래머와 대결하세요.</p>
-    <div class="hero__actions hero__actions--center">
-      <a href="{% url 'accounts:login' %}" class="btn btn-primary">로그인</a>
-      <a href="{% url 'accounts:signup' %}" class="btn btn-ghost">회원가입</a>
+  {% else %}
+    <div class="main-hero__inner">
+      <h1 class="main-hero__title">Piro Game</h1>
+      <p class="main-hero__lead">1~10 숫자 카드로 다른 피로그래머와 대결하세요.</p>
+      <div class="main-hero__actions">
+        <a href="{% url 'accounts:login' %}" class="pill-btn">start</a>
+      </div>
     </div>
-  </section>
-{% endif %}
+  {% endif %}
+</div>
 {% endblock %}

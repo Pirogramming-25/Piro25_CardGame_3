@@ -1,0 +1,125 @@
+/* ============================================
+   메인 페이지 (main.html)
+   ============================================ */
+
+.main-hero {
+  position: relative;
+  min-height: calc(100vh - var(--nav-height) - var(--footer-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  background-color: #f7f7fb;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  /* container padding 초과해서 화면 꽉 차게 */
+  margin: -32px -24px;
+}
+
+.main-hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+/* 큰 로고 타이틀 */
+.main-hero__title {
+  font-family: var(--font-logo);
+  font-size: 95px;
+  font-weight: 400;
+  color: var(--color-nav-bg);   /* 민트색 */
+  line-height: 1.2;
+  margin: 0;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.main-hero__welcome {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.main-hero__score {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.main-hero__score strong {
+  color: var(--color-nav-bg);
+  font-weight: 700;
+}
+
+.main-hero__lead {
+  color: #ffffff;
+  font-size: 18px;
+  margin: 0;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.main-hero__actions {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+/* start / list 알약형 버튼 */
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #d9d9d9;
+  color: #536e67;
+  font-family: var(--font-body);
+  font-size: 32px;
+  font-weight: 700;
+  border-radius: 50px;
+  padding: 9px 35px;
+  min-width: 130px;
+  height: 50px;
+  text-decoration: none;
+  box-shadow: 0px 8px 2px 0px rgba(0, 0, 0, 0.25);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.pill-btn:hover {
+  transform: translateY(2px);
+  box-shadow: 0px 4px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+.pill-btn:active {
+  transform: translateY(6px);
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================================
+   반응형 (모바일)
+   ============================================ */
+
+@media (max-width: 768px) {
+  .main-hero__title {
+    font-size: 56px;
+  }
+
+  .pill-btn {
+    font-size: 22px;
+    min-width: 100px;
+    height: 42px;
+    padding: 6px 24px;
+  }
+
+  .main-hero__actions {
+    gap: 20px;
+  }
+}
