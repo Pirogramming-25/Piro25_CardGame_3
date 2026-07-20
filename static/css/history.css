@@ -19,7 +19,7 @@
 }
 
 .stat-card {
-    background: #D9D9D9;
+    background: #ffffff;
     color: #1f2937;
     border-radius: 14px;
     padding: 18px 16px;
@@ -43,7 +43,7 @@
     grid-template-columns: 140px 1fr 90px 90px 100px;
     align-items: center;
     gap: 16px;
-    background: #D9D9D9;
+    background: #ffffff;
     color: #1f2937;
     border-radius: 12px;
     padding: 16px 20px;
@@ -77,6 +77,23 @@
     padding: 32px;
     background: rgba(244, 241, 234, 0.08);
     border-radius: 12px;
+}
+
+.history-row__link {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #1f2d3d;
+    color: #f4f1ea;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    text-align: center;
+
+}
+
+.history-row__link:hover {
+    opacity: 0.85;
 }
 
 @media (max-width: 640px) {

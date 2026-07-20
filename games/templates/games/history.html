@@ -78,9 +78,9 @@
                 </span>
 
                 {% if game.viewer_can_counter %}
-                    <a href="{% url 'games:counter' game.id %}" class="btn btn--sm">반격하기</a>
+                    <a href="{% url 'games:counter' game.id %}" class="history-row__link">반격하기</a>
                 {% else %}
-                    <a href="{% url 'games:detail' game.id %}" class="btn btn--sm">게임정보</a>
+                    <a href="{% url 'games:detail' game.id %}" class="history-row__link">게임정보</a>
                 {% endif %}
             </li>
         {% empty %}
