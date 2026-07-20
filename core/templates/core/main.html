@@ -16,9 +16,8 @@
     {% endif %}
 
     <div class="hero__actions">
-      {# Role 3의 attack URL 만들어지면 열기 #}
-      {# <a href="{% url 'games:attack' %}" class="btn btn-primary">게임 시작</a> #}
-      {# <a href="{% url 'games:history' %}" class="btn btn-ghost">전적 보기</a> #}
+      <a href="{% url 'games:attack' %}" class="btn btn-primary">게임 시작</a>
+      <a href="{% url 'games:history' %}" class="btn btn-ghost">전적 보기</a>
       <a href="{% url 'core:ranking' %}" class="btn btn-ghost">랭킹 보기</a>
     </div>
   </section>
