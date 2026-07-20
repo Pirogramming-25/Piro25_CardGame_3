@@ -9,10 +9,6 @@
   align-items: center;
   justify-content: center;
   padding: 60px 24px;
-  background-color: #f7f7fb;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
 
   /* container padding 초과해서 화면 꽉 차게 */
   margin: -32px -24px;

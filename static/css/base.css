@@ -33,7 +33,11 @@
    ============================================ */
 
 body {
-  background: var(--color-bg);
+  background-image: url('/static/images/main.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: var(--color-text);
   font-family: var(--font-body);
   min-height: 100vh;
