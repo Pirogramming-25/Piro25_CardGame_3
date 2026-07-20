@@ -1,0 +1,94 @@
+/* Game History 페이지 전용 스타일 */
+
+.history {
+    background-color: #153138;
+    border-radius: 16px;
+    padding: 40px 48px 56px;
+    color: #f4f1ea;
+    min-height: 480px;
+}
+
+.history__header h1 { font-size: 32px; font-weight: 800; margin-bottom: 4px; }
+.history__header p { color: #cfd6e4; font-size: 14px; margin-bottom: 28px; }
+
+.history__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.stat-card {
+    background: #D9D9D9;
+    color: #1f2937;
+    border-radius: 14px;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-card__icon { font-size: 20px; }
+.stat-card__label { font-size: 13px; color: #4b5563; }
+.stat-card__value { font-size: 24px; font-weight: 800; }
+.stat-card--win .stat-card__value { color: #2f7a4d; }
+.stat-card--lose .stat-card__value { color: #b3413a; }
+.stat-card--draw .stat-card__value { color: #4b5563; }
+
+.history__list { display: flex; flex-direction: column; gap: 12px; list-style: none; padding: 0; }
+
+.history-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 90px 90px 100px;
+    align-items: center;
+    gap: 16px;
+    background: #D9D9D9;
+    color: #1f2937;
+    border-radius: 12px;
+    padding: 16px 20px;
+}
+
+.history-row__opponent { font-weight: 700; text-align: center; }
+.history-row__score { text-align: center; color: #4b5563; }
+.history-row__change { text-align: center; font-weight: 700; }
+.history-row__change.is-positive { color: #2f7a4d; }
+.history-row__change.is-negative { color: #b3413a; }
+
+.badge {
+    display: inline-block;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #f4f1ea;
+    background: #374151;
+}
+.badge--counter { background: #1f2937; }
+.badge--pending { background: #a0632e; }
+.badge--win     { background: #2f7a4d; }
+.badge--lose    { background: #b3413a; }
+.badge--draw    { background: #6b7280; }
+.badge--cancel  { background: #9ca3af; }
+
+.history__empty {
+    text-align: center;
+    padding: 32px;
+    background: rgba(244, 241, 234, 0.08);
+    border-radius: 12px;
+}
+
+@media (max-width: 640px) {
+    .history { padding: 24px 16px 32px; }
+    .history__stats { grid-template-columns: repeat(2, 1fr); }
+    .history-row {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "badge action" "opp opp" "score change";
+    }
+    .badge { grid-area: badge; }
+    .history-row__opponent { grid-area: opp; }
+    .history-row__score { grid-area: score; }
+    .history-row__change { grid-area: change; }
+    .history-row .btn { grid-area: action; }
+}
