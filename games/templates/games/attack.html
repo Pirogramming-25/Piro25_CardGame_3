@@ -31,7 +31,7 @@
         <select name="defender_id" id="defender_id" class="attack-form__select">
             <option value="" disabled selected>상대를 선택하세요</option>
             {% for opponent in opponents %}
-            <option value="{{ opponent.pk }}">{{ opponent.display_name }}</option>
+            <option value="{{ opponent.pk }}">{{ opponent }}</option>
             {% endfor %}
         </select>
 
