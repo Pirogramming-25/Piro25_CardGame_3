@@ -1,0 +1,95 @@
+:root {
+    --piro-mint: #9dc3bb;
+    --piro-navy-dark: #16232a;
+    --piro-navy-mid: #24363f;
+    --piro-cream: #f2ede1;
+    --piro-accent: #e8b96a;
+}
+
+.attack {
+    max-width: 480px;
+    margin: 80px auto;
+    padding: 32px;
+    background-color: rgba(22, 35, 42, 0.85);
+    border: 1px solid var(--piro-mint);
+    border-radius: 12px;
+    color: var(--piro-cream);
+    text-align: center;
+    backdrop-filter: blur(2px);
+}
+
+.attack__title { font-size: 22px; margin-bottom: 12px; color: var(--piro-mint); }
+.attack__subtitle { font-size: 14px; color: #c7d6d2; margin-bottom: 24px; }
+
+.attack-form__label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 12px;
+    text-align: left;
+    color: var(--piro-cream);
+}
+
+.attack-card-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.attack-card__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--piro-navy-mid);
+    background-color: rgba(157, 195, 187, 0.08);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--piro-cream);
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.attack-card__input { position: absolute; opacity: 0; pointer-events: none; }
+
+.attack-card--selected {
+    background-color: var(--piro-mint);
+    border-color: var(--piro-mint);
+    color: var(--piro-navy-dark);
+}
+
+.attack-form__select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border: 2px solid var(--piro-navy-mid);
+    background-color: rgba(157, 195, 187, 0.08);
+    color: var(--piro-cream);
+    font-size: 14px;
+}
+
+.attack-form__select:focus { border-color: var(--piro-mint); outline: none; }
+
+.attack-form__error { color: #e88a8a; font-size: 13px; margin-bottom: 12px; }
+
+.attack-form__submit {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--piro-accent);
+    color: var(--piro-navy-dark);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.attack-form__submit:disabled {
+    background-color: var(--piro-navy-mid);
+    color: #7c8b8a;
+    cursor: not-allowed;
+}

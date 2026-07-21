@@ -1,0 +1,44 @@
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info
+.pytest_cache
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+
+# Environment
+.env
+.env.local
+venv/
+.venv/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Static (컨테이너 안에서 다시 생성)
+staticfiles/
+
+# 기타
+README.md
+node_modules/

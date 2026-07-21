@@ -1,0 +1,184 @@
+/* ============================================
+   공통 디자인 토큰 (변수)
+   ============================================ */
+
+:root {
+  /* Colors — Figma palette */
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-text: #07222c;
+  --color-muted: #6b7280;
+  --color-primary: #07222c;
+  --color-primary-hover: #0f3a4a;
+  --color-danger: #ef4444;
+  --color-border: #e5e7eb;
+  --color-nav-bg: #bbcfc7;
+  --color-nav-text: #07222c;
+
+  /* Fonts */
+  --font-body: "Inter", system-ui, -apple-system, "Pretendard", sans-serif;
+  --font-logo: "Pacifico", cursive;
+
+  /* Radius & Shadow */
+  --radius: 10px;
+  --shadow: 0 2px 8px rgba(0, 0, 0, .06);
+
+  /* Layout */
+  --nav-height: 67px;
+  --footer-height: 81px;
+}
+
+/* ============================================
+   레이아웃
+   ============================================ */
+
+body {
+  background-image: url('/static/images/main.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 24px;
+  flex: 1;
+}
+
+/* ============================================
+   Navbar (상단)
+   ============================================ */
+
+.navbar {
+  background: var(--color-nav-bg);
+  height: var(--nav-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 100px;
+  color: var(--color-nav-text);
+}
+
+.navbar .logo {
+  font-family: var(--font-logo);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--color-nav-text);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.nav-links a {
+  color: var(--color-nav-text);
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  opacity: 0.7;
+}
+
+.nav-user {
+  color: var(--color-nav-text);
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.inline-form {
+  display: inline;
+}
+
+.inline-form .btn {
+  background: transparent;
+  color: var(--color-nav-text);
+  border: none;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 18px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.inline-form .btn:hover {
+  opacity: 0.7;
+}
+
+/* ============================================
+   Footer (하단)
+   ============================================ */
+
+.footer {
+  background: var(--color-nav-bg);
+  height: var(--footer-height);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 100px;
+}
+
+.footer__team {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-nav-text);
+}
+
+/* ============================================
+   Messages
+   ============================================ */
+
+.messages {
+  padding: 12px 24px;
+}
+
+.msg {
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  background: #eef2ff;
+  margin-bottom: 6px;
+}
+
+.msg.error {
+  background: #fef2f2;
+  color: var(--color-danger);
+}
+
+/* ============================================
+   반응형 (좁은 화면)
+   ============================================ */
+
+@media (max-width: 768px) {
+  .navbar,
+  .footer {
+    padding: 0 20px;
+  }
+
+  .nav-links {
+    gap: 12px;
+    font-size: 14px;
+  }
+
+  .navbar .logo {
+    font-size: 20px;
+  }
+
+  .footer__team {
+    font-size: 14px;
+  }
+}

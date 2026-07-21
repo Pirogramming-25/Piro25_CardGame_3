@@ -1,0 +1,25 @@
+.btn {
+  display: inline-block; padding: 8px 14px; border-radius: var(--radius);
+  font-weight: 600; font-size: 14px; text-align: center; transition: filter 0.15s;
+}
+.btn:hover { filter: brightness(1.05); }
+.btn-primary { background: var(--color-primary); color: #fff; }
+.btn-ghost { background: transparent; color: var(--color-text); border: 1px solid var(--color-border); }
+.btn-danger { background: var(--color-danger); color: #fff; }
+.btn-block { display: block; width: 100%; }
+
+.card {
+  background: var(--color-surface); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 24px;
+}
+
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; margin-bottom: 6px; font-weight: 500; font-size: 14px; }
+.form-group input {
+  width: 100%; padding: 8px 12px; border: 1px solid var(--color-border);
+  border-radius: 6px; outline: none;
+}
+.form-group input:focus { border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(79,70,229,0.15); }
+
+.muted { color: var(--color-muted); font-size: 14px; }
+.divider { text-align: center; color: var(--color-muted); margin: 16px 0; font-size: 14px; }

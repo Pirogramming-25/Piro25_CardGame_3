@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Game History{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/history.css' %}">{% endblock %}
+{% block content %}
+<div class="history">
+    <div class="history__header">
+        <h1>Game History</h1>
+        <p>{{ me }}님의 최근 게임 기록입니다.</p>
+    </div>
+
+    <div class="history__stats">
+        <div class="stat-card">
+            <span class="stat-card__icon">🎲</span>
+            <span class="stat-card__label">전체 게임</span>
+            <span class="stat-card__value">{{ total }}</span>
+        </div>
+        <div class="stat-card stat-card--win">
+            <span class="stat-card__icon">🏆</span>
+            <span class="stat-card__label">승리</span>
+            <span class="stat-card__value">{{ wins }}</span>
+        </div>
+        <div class="stat-card stat-card--lose">
+            <span class="stat-card__icon">⚔️</span>
+            <span class="stat-card__label">패배</span>
+            <span class="stat-card__value">{{ losses }}</span>
+        </div>
+        <div class="stat-card stat-card--draw">
+            <span class="stat-card__icon">⚖️</span>
+            <span class="stat-card__label">무승부</span>
+            <span class="stat-card__value">{{ draws }}</span>
+        </div>
+    </div>
+
+    <ul class="history__list">
+        {% for game in games %}
+            <li class="history-row">
+                {% if game.status == "cancelled" %}
+                    <span class="badge badge--cancel">취소됨</span>
+                {% elif game.status == "completed" %}
+                    {% if game.winner == me %}
+                        <span class="badge badge--win">승리</span>
+                    {% elif game.winner %}
+                        <span class="badge badge--lose">패배</span>
+                    {% else %}
+                        <span class="badge badge--draw">무승부</span>
+                    {% endif %}
+                {% elif game.viewer_can_counter %}
+                    <span class="badge badge--counter">CounterAttack</span>
+                {% else %}
+                    <span class="badge badge--pending">진행중</span>
+                {% endif %}
+
+                {% if game.attacker == me %}
+                    <span class="history-row__opponent">{{ game.defender }}</span>
+                {% else %}
+                    <span class="history-row__opponent">{{ game.attacker }}</span>
+                {% endif %}
+
+                <span class="history-row__score">
+                    {% if game.status == "completed" %}
+                        {{ game.attacker_card }} : {{ game.defender_card }}
+                    {% else %}
+                        - : -
+                    {% endif %}
+                </span>
+
+                <span class="history-row__change
+                    {% if game.status == 'completed' %}
+                        {% if game.attacker == me %}{% if game.attacker_score_change > 0 %}is-positive{% elif game.attacker_score_change < 0 %}is-negative{% endif %}
+                        {% else %}{% if game.defender_score_change > 0 %}is-positive{% elif game.defender_score_change < 0 %}is-negative{% endif %}
+                        {% endif %}
+                    {% endif %}">
+                    {% if game.status == "completed" %}
+                        {% if game.attacker == me %}{{ game.attacker_score_change }}점
+                        {% else %}{{ game.defender_score_change }}점{% endif %}
+                    {% else %}-{% endif %}
+                </span>
+
+                {% if game.viewer_can_counter %}
+                    <a href="{% url 'games:counter' game.id %}" class="history-row__link">반격하기</a>
+                {% else %}
+                    <a href="{% url 'games:detail' game.id %}" class="history-row__link">게임정보</a>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li class="history__empty">아직 게임 기록이 없습니다.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

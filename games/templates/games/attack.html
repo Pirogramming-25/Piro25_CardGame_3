@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}공격하기{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/attack.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="attack">
+    <h1 class="attack__title">공격하기</h1>
+    <p class="attack__subtitle">카드를 하나 고르고, 공격할 상대를 선택하세요.</p>
+
+    <form class="attack-form" method="post" action="{% url 'games:attack' %}">
+        {% csrf_token %}
+
+        <p class="attack-form__label">내가 고른 카드:</p>
+        <ul class="attack-card-list">
+            {% for card in cards %}
+            <li class="attack-card">
+                <label class="attack-card__label">
+                    <input type="radio" name="attacker_card" value="{{ card }}" class="attack-card__input">
+                    <span class="attack-card__value">{{ card }}</span>
+                </label>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <label class="attack-form__label" for="defender_id">공격할 상대:</label>
+        <select name="defender_id" id="defender_id" class="attack-form__select">
+            <option value="" disabled selected>상대를 선택하세요</option>
+            {% for opponent in opponents %}
+            <option value="{{ opponent.pk }}">{{ opponent }}</option>
+            {% endfor %}
+        </select>
+
+        {% if error %}
+        <p class="attack-form__error">{{ error }}</p>
+        {% else %}
+        <p class="attack-form__error" data-error hidden>카드와 상대를 모두 선택해주세요.</p>
+        {% endif %}
+
+        <button type="submit" class="attack-form__submit" disabled>Attack!</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/attack.js' %}"></script>
+{% endblock %}

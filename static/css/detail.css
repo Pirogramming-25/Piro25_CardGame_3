@@ -1,0 +1,63 @@
+/* 게임 상세(detail) 페이지 */
+
+.detail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 520px;
+}
+
+.detail-card {
+    background: #ffffff;
+    color: #1f2937;
+    border-radius: 20px;
+    padding: 48px 56px;
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+}
+
+.detail-card__title { font-size: 30px; font-weight: 800; margin: 0 0 20px; color: #1f2937; }
+
+.detail-card__status,
+.detail-card__mycard,
+.detail-card__rule,
+.detail-card__row,
+.detail-card__result,
+.detail-card__score {
+    margin: 6px 0;
+    font-size: 16px;
+    color: #1f2937;
+}
+
+.detail-card__result { font-weight: 700; }
+
+.detail-card__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+}
+
+.detail-card__actions .btn,
+.detail-card__actions .btn--ghost {
+    display: inline-block;
+    min-width: 140px;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    background: #1f2d3d;
+    color: #f4f1ea;
+    border: none;
+}
+
+.detail-card__actions .btn:hover,
+.detail-card__actions .btn--ghost:hover { opacity: 0.85; }
+
+@media (max-width: 480px) {
+    .detail-card { padding: 32px 24px; max-width: 100%; }
+    .detail-card__title { font-size: 24px; }
+}

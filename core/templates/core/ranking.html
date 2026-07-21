@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}랭킹 - 피로그래머 카드 게임{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/ranking.css' %}">{% endblock %}
+
+{% block content %}
+<div class="main-hero" {% if request %}style="background-image: url({% static 'images/main.png' %});"{% endif %}></div>
+<h1 class="ranking__title">랭킹</h1>
+
+{% if top3 %}
+<section class="podium">
+  {% for row in top3 %}
+    <div class="podium-item card rank-{{ row.rank }}{% if row.is_me %} me{% endif %}">
+      <div class="podium-item__medal">
+        {% if row.rank == 1 %}🥇{% elif row.rank == 2 %}🥈{% else %}🥉{% endif %}
+      </div>
+      <div class="podium-item__name">{{ row.user.display_name }}</div>
+      <div class="podium-item__score muted">{{ row.user.score }}점</div>
+    </div>
+  {% endfor %}
+</section>
+{% endif %}
+
+<table class="ranking-table">
+  <thead>
+    <tr>
+      <th class="ranking-table__col-rank">순위</th>
+      <th class="ranking-table__col-user">유저</th>
+      <th class="ranking-table__col-score">점수</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rest %}
+      <tr class="ranking-table__row{% if row.is_me %} me{% endif %}">
+        <td>{{ row.rank }}</td>
+        <td>{{ row.user.display_name }}</td>
+        <td class="ranking-table__col-score">{{ row.user.score }}</td>
+      </tr>
+    {% empty %}
+      {% if not top3 %}
+        <tr>
+          <td colspan="3" class="ranking-table__empty muted">아직 랭킹에 표시할 유저가 없어요.</td>
+        </tr>
+      {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
